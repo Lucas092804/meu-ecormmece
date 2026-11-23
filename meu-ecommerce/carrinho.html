@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - MDG Informatica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body data-pagina="carrinho">
+    <header id="cabecalho"></header>
+
+    <main class="container conteudo">
+        <h1 class="titulo-pagina">Meu Carrinho de Compras</h1>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <section class="painel mb-4" aria-labelledby="titulo-itens">
+                    <h2 class="titulo-painel" id="titulo-itens"><i class="bi bi-bag me-2"></i>Itens do carrinho</h2>
+                    <div id="lista-carrinho"></div>
+                </section>
+
+                <section class="painel mb-4" aria-labelledby="titulo-entrega">
+                    <h2 class="titulo-painel" id="titulo-entrega"><i class="bi bi-truck me-2"></i>Entrega</h2>
+                    <div class="mb-3">
+                        <label for="endereco-entrega" class="form-label">Endereço de entrega</label>
+                        <select id="endereco-entrega" class="form-select">
+                            <option value="">Selecione um endereço salvo (opcional)</option>
+                        </select>
+                        <div class="form-text" id="dica-enderecos">Nenhum endereço salvo. <a href="enderecos.html">Cadastrar endereço</a></div>
+                    </div>
+                    <label for="cep-entrega" class="form-label">CEP</label>
+                    <div class="input-group">
+                        <input type="text" id="cep-entrega" class="form-control" placeholder="99999-999" inputmode="numeric" maxlength="9" autocomplete="postal-code">
+                        <button type="button" class="btn btn-mdg" id="botao-calcular-frete">Calcular Frete</button>
+                    </div>
+                    <div id="alerta-frete" class="mt-3" aria-live="polite"></div>
+                    <div id="opcoes-frete" class="lista-opcoes mt-3"></div>
+                </section>
+
+                <section class="painel mb-4" aria-labelledby="titulo-cupom">
+                    <h2 class="titulo-painel" id="titulo-cupom"><i class="bi bi-ticket-perforated me-2"></i>Cupom de desconto</h2>
+                    <label for="campo-cupom" class="form-label">Código do cupom</label>
+                    <div class="input-group">
+                        <input type="text" id="campo-cupom" class="form-control" placeholder="Ex.: TADS10" autocomplete="off">
+                        <button type="button" class="btn btn-mdg" id="botao-aplicar-cupom">Aplicar cupom</button>
+                    </div>
+                    <div id="alerta-cupom" class="mt-3" aria-live="polite"></div>
+                    <div id="cupom-aplicado" class="cupom-aplicado mt-3" hidden>
+                        <span><i class="bi bi-check-circle-fill me-2"></i><span id="cupom-aplicado-texto"></span></span>
+                        <button type="button" class="btn btn-link btn-sm text-danger p-0" id="botao-remover-cupom">Remover cupom</button>
+                    </div>
+                </section>
+
+                <section class="painel mb-4" aria-labelledby="titulo-pagamento">
+                    <h2 class="titulo-painel" id="titulo-pagamento"><i class="bi bi-credit-card me-2"></i>Forma de pagamento</h2>
+                    <div class="lista-opcoes">
+                        <label class="opcao-selecionavel" for="pagamento-pix">
+                            <input class="form-check-input" type="radio" name="pagamento" id="pagamento-pix" value="pix">
+                            <span class="opcao-texto"><strong><i class="bi bi-qr-code me-2"></i>Pix</strong><small>Aprovação imediata</small></span>
+                        </label>
+                        <label class="opcao-selecionavel" for="pagamento-boleto">
+                            <input class="form-check-input" type="radio" name="pagamento" id="pagamento-boleto" value="boleto">
+                            <span class="opcao-texto"><strong><i class="bi bi-upc-scan me-2"></i>Boleto</strong><small>Vence em 3 dias úteis</small></span>
+                        </label>
+                        <label class="opcao-selecionavel" for="pagamento-cartao">
+                            <input class="form-check-input" type="radio" name="pagamento" id="pagamento-cartao" value="cartao">
+                            <span class="opcao-texto"><strong><i class="bi bi-credit-card-2-front me-2"></i>Cartão</strong><small>Em até 10x sem juros</small></span>
+                        </label>
+                    </div>
+                    <div id="area-cartao" class="mt-3" hidden>
+                        <label for="numero-cartao" class="form-label">Número do cartão</label>
+                        <input type="text" id="numero-cartao" class="form-control" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number">
+                    </div>
+                </section>
+            </div>
+
+            <aside class="col-lg-4">
+                <section class="painel resumo-pedido" aria-labelledby="titulo-resumo">
+                    <h2 class="titulo-painel" id="titulo-resumo">Resumo do Pedido</h2>
+                    <div class="linha-resumo"><span>Itens</span><span id="resumo-quantidade">0 produtos</span></div>
+                    <div class="linha-resumo"><span>Subtotal</span><span id="resumo-subtotal">R$ 0,00</span></div>
+                    <div class="linha-resumo"><span>Frete</span><span id="resumo-frete">A calcular</span></div>
+                    <div class="linha-resumo linha-desconto" id="linha-desconto" hidden><span id="resumo-desconto-rotulo">Desconto</span><span id="resumo-desconto">R$ 0,00</span></div>
+                    <div class="linha-resumo linha-total"><span>Total</span><span id="resumo-total">R$ 0,00</span></div>
+                    <p class="parcelamento" id="resumo-parcelas">Em até 10x sem juros de R$ 0,00</p>
+                    <div id="alerta-checkout" aria-live="polite"></div>
+                    <button type="button" class="btn btn-mdg btn-lg w-100 mb-3" id="botao-finalizar"><i class="bi bi-lock me-2"></i>Finalizar pedido</button>
+                    <a href="produtos.html" class="link-voltar"><i class="bi bi-arrow-left me-1"></i>Retornar à Lista de Produtos</a>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer id="rodape" class="rodape"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', iniciarPagina);
+    </script>
+</body>
+</html>

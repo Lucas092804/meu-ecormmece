@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - MDG Informatica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body data-pagina="index">
+    <header id="cabecalho"></header>
+
+    <main class="container conteudo">
+        <section class="carrossel" aria-label="Destaques">
+            <div id="carrossel-destaques" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrossel-destaques" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Destaque 1"></button>
+                    <button type="button" data-bs-target="#carrossel-destaques" data-bs-slide-to="1" aria-label="Destaque 2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3500">
+                        <img src="img/imgtela.jpg" class="d-block w-100" alt="Destaque da loja 1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3500">
+                        <img src="img/imgtela1.jpg" class="d-block w-100" alt="Destaque da loja 2">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrossel-destaques" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrossel-destaques" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+        </section>
+        <section class="chamada-inicial">
+            <div>
+                <h1>Tecnologia para estudar, trabalhar e jogar</h1>
+                <p>Veja o catálogo completo, filtre por categoria e monte seu carrinho com frete e cupom de desconto.</p>
+            </div>
+            <a class="btn btn-mdg btn-lg" href="produtos.html"><i class="bi bi-grid me-2"></i>Ver produtos</a>
+        </section>
+    </main>
+
+    <footer id="rodape" class="rodape"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', iniciarPagina);
+    </script>
+</body>
+</html>

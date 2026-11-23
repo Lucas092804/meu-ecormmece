@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido realizado - MDG Informatica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body data-pagina="sucesso_pedido">
+    <header id="cabecalho"></header>
+
+    <main class="container conteudo">
+        <section class="caixa-formulario caixa-sucesso">
+            <i class="bi bi-check-circle icone-grande" aria-hidden="true"></i>
+            <h1>Pedido realizado com sucesso!</h1>
+            <p class="subtitulo" id="dados-pedido">Protocolo do pedido: <strong id="protocolo-pedido"></strong></p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a class="btn btn-mdg" id="link-detalhes-pedido" href="meus_pedidos.html">Ver detalhes do pedido</a>
+                <a class="btn btn-outline-secondary" href="index.html">Voltar para a página inicial</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="rodape" class="rodape"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', iniciarPagina);
+    </script>
+</body>
+</html>
